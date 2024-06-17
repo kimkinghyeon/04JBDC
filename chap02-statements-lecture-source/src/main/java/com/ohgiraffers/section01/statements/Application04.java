@@ -6,12 +6,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.ohgiraffers.config.JDBCTemplate.close;
 import static com.ohgiraffers.config.JDBCTemplate.getConnection;
 
-public class Application03 {
+public class Application04 {
     public static void main(String[] args) {
 
 //      1. Connection 객체 생성
@@ -25,44 +26,49 @@ public class Application03 {
 //      쿼리문을 사용하기 위해 선언
 //      String query = "select emp_id,emp_name from employee where emp_id = '" + empId + "'";
 
+        // 리스트 생성
+
+        List<EmployeeDTO> empList = null;
+        
         // EmployeeDTO 생성
-        EmployeeDTO selectedEmp = null;
+        EmployeeDTO row = null;
 
         try {
 //          4. 연결객체의 createStatement()를 이용한 Statement 객체 생성
             stmt = con.createStatement();
-            Scanner sc = new Scanner(System.in);
-            System.out.println("조회하려는 사번을 입력하세요 : ");
 
-            String empId = sc.nextLine();
-            String query = "select * from employee where emp_id = '" + empId + "'";
+            // employee 테이블 전체조회
+            String query = "select * from employee";
+           
             // 5. executeQuery()로 쿼리문을 실행하고 결과를 ResultSet 에 반환 받기
             rset = stmt.executeQuery(query);
+            
+            empList = new ArrayList<>();
 
             // 6. 쿼리문의 결과를 컬럼 이름을 이용해서 사용
-            while (rset.next()) {
 
-                if (rset != null) {
-                    selectedEmp = new EmployeeDTO();
+                while (rset.next()) {
 
-                    selectedEmp.setEmpId(rset.getString("EMP_ID"));
-                    selectedEmp.setEmpName(rset.getString("EMP_Name"));
-                    selectedEmp.setEmpNO(rset.getString("EMP_NO"));
-                    selectedEmp.setEmail(rset.getString("Email"));
-                    selectedEmp.setPhone(rset.getString("Phone"));
-                    selectedEmp.setDeptCode(rset.getString("Dept_Code"));
-                    selectedEmp.setJobCode(rset.getString("Job_Code"));
-                    selectedEmp.setSalLevel(rset.getString("Sal_Level"));
-                    selectedEmp.setSalary(rset.getDouble("Salary"));
-                    selectedEmp.setBonus(rset.getDouble("Bonus"));
-                    selectedEmp.setManagerId(rset.getString("Manager_Id"));
-                    selectedEmp.setHireDate(rset.getDate("Hire_Date"));
-                    selectedEmp.setEntDate(rset.getDate("Ent_Date"));
-                    selectedEmp.setEntYn(rset.getString("Ent_Yn"));
+                    row = new EmployeeDTO();
 
-                    System.out.println(selectedEmp.toString());
+                    row.setEmpId(rset.getString("EMP_ID"));
+                    row.setEmpName(rset.getString("EMP_Name"));
+                    row.setEmpNO(rset.getString("EMP_NO"));
+                    row.setEmail(rset.getString("Email"));
+                    row.setPhone(rset.getString("Phone"));
+                    row.setDeptCode(rset.getString("Dept_Code"));
+                    row.setJobCode(rset.getString("Job_Code"));
+                    row.setSalLevel(rset.getString("Sal_Level"));
+                    row.setSalary(rset.getDouble("Salary"));
+                    row.setBonus(rset.getDouble("Bonus"));
+                    row.setManagerId(rset.getString("Manager_Id"));
+                    row.setHireDate(rset.getDate("Hire_Date"));
+                    row.setEntDate(rset.getDate("Ent_Date"));
+                    row.setEntYn(rset.getString("Ent_Yn"));
+
+                    empList.add(row);
                 }
-            }
+                
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -71,6 +77,10 @@ public class Application03 {
             close(rset);
             close(stmt);
             close(con);
+            
+            for(EmployeeDTO emp : empList){
+                System.out.println(emp);
+            }
         }
     }
 }

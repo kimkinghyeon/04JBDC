@@ -1,13 +1,9 @@
-package com.ohgiraffers.config;
+package com.ohgiraffers2.config;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class JDBCTemplate {
 
@@ -20,7 +16,7 @@ public class JDBCTemplate {
         Properties prop = new Properties();
 
         try {
-            prop.load(new FileReader("src/main/java/com/ohgiraffers/connection/connection-info.properties"));
+            prop.load(new FileReader("src/main/java/com/ohgiraffers2/connection/connection-info.properties"));
 
             // key-value
             String driver = prop.getProperty("driver");
