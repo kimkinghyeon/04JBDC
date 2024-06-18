@@ -14,21 +14,21 @@ import java.util.*;
 import static com.ohgiraffers.config.JDBCTemplate.close;
 import static com.ohgiraffers.config.JDBCTemplate.getConnection;
 
-public class Application05 {
+public class apptest {
     public static void main(String[] args) {
 
         Connection con = getConnection();
 
+        //   PreparedStatement - 조건값을 ? 로 두고 다른 쿼리를 미리 컴파일 해둔뒤
+        //                       쿼리는 변경하지 않고, 바인딩 되는 변수만 바꿔서 SQL 문이 실행된된다.
+
         PreparedStatement pstmt = null;
 
+        // select 결과집합을 받아올 용도의 인터페이스
         ResultSet rset = null;
 
         // 조회할 employee 의 이름 성을 받아서 찾기
-        Scanner sc = new Scanner(System.in);
 
-        System.out.print(" 조회 이름 성 : ");
-
-        String empName = sc.nextLine();
 
         // concat(?, '%') => ? 로 시작하는 것
 //        String query = " select * from employee where emp_name like concat( ? , '%' ) ";
@@ -43,13 +43,13 @@ public class Application05 {
             // employee-query.xml 가져오는
             // 일반 load 가 아닌 xml 파일이기 떄문에 loadFromXML
             prop.loadFromXML(new FileInputStream
-                    ("src/main/java/com/ohgiraffers/section02/preparedstatement/employee-query.xml"));
+                    ("src/main/java/com/ohgiraffers/section02/preparedstatement/employee-query2.xml"));
 
             // employee-query.xml 안에 있는 커리문 의 키값
             String query = prop.getProperty("selectEmpByFamilyName");
 
+
             pstmt = con.prepareStatement(query);
-            pstmt.setString(1, empName);
 
             rset = pstmt.executeQuery();
             empList = new ArrayList<>();
