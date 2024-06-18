@@ -27,7 +27,7 @@ public class Application04 {
 
 
         Scanner sc = new Scanner(System.in);
-        System.out.print(" 사번 입력 : ");
+        System.out.print(" 부서코드 : ");
         String Dept_ID = sc.nextLine();
 
         DepartementDTO DepartementDTO = null;
