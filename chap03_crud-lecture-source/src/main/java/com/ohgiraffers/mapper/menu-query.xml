@@ -12,4 +12,17 @@
         orderable_status )
         values(?,?,?,?)
     </entry>
+<!-- 업데이트 -->
+    <entry key="updateMenu">
+        update tbl_menu
+        set menu_name = ?,
+        menu_price = ?
+        where menu_code = ?
+    </entry>
+<!-- 딜리트 -->
+    <entry key="deleteMenu">
+        delete
+        from tbl_menu
+        where menu_code = ?
+    </entry>
 </properties>
