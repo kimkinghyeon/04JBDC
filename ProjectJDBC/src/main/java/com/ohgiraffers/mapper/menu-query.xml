@@ -25,5 +25,16 @@
         from employee
         where emp_id = ?
     </entry>
+
+    <entry key="insertEmployee">
+        insert into employee (
+        emp_id,
+        emp_name,
+        emp_no,
+        job_code,
+        sal_level )
+        value(?,?,?,?,?)
+    </entry>
+
 </properties>
 <!-- EMP_ID EMP_Name EMP_NO Email Phone Dept_Code Job_Code Sal_Level Salary Bonus Manager_Id Hire_Date Ent_Date Ent_Yn -->

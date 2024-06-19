@@ -14,7 +14,7 @@ import static com.ohgiraffers.config.JDBCTemplate.close;
 import static com.ohgiraffers.config.JDBCTemplate.getConnection;
 
 public class UpdateEmployee {
-    public static void main(String[] args) {
+    public void updateEmp() {
 
         Connection con = getConnection();
 
@@ -25,11 +25,11 @@ public class UpdateEmployee {
         Properties prop = new Properties();
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("변경할 emp id ");
+        System.out.print("변경할 emp id : ");
         String empId = sc.next();
-        System.out.println("변경할 emp name");
+        System.out.print("변경할 emp name : ");
         String empName = sc.next();
-        System.out.println("변경할 emp no");
+        System.out.print("변경할 emp no : ");
         String empNo = sc.next();
 //        System.out.println("변경할 email");
 //        String email = sc.next();
@@ -37,9 +37,9 @@ public class UpdateEmployee {
 //        String phone = sc.next();
 //        System.out.println("변경할 deptCode");
 //        String deptCode = sc.next();
-        System.out.println("변경할 jobCode");
+        System.out.print("변경할 jobCode : ");
         String jobCode = sc.next();
-        System.out.println("변경할 salLevel");
+        System.out.print("변경할 salLevel : ");
         String salLevel = sc.next();
 //        System.out.println("변경할 Salary ");
 //        double salary = sc.nextDouble();

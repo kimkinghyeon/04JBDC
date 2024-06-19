@@ -1,4 +1,4 @@
-package com.ohgiraffers;
+package com.ohgiraffers.all;
 
 import com.ohgiraffers.model.dto.EmployeeDTO;
 
@@ -18,7 +18,7 @@ import static com.ohgiraffers.config.JDBCTemplate.close;
 import static com.ohgiraffers.config.JDBCTemplate.getConnection;
 
 public class AllEmployee {
-    public static void main(String[] args) {
+    public void allEmp() {
 
         Connection con = getConnection();
 

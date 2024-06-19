@@ -13,7 +13,7 @@ import static com.ohgiraffers.config.JDBCTemplate.close;
 import static com.ohgiraffers.config.JDBCTemplate.getConnection;
 
 public class DeleteEmployee {
-    public static void main(String[] args) {
+    public void deleteEmp() {
 
         Connection con = getConnection();
 
@@ -28,7 +28,7 @@ public class DeleteEmployee {
                     ("src/main/java/com/ohgiraffers/mapper/menu-query.xml"));
             String query = prop.getProperty("deleteEmployee");
             Scanner sc = new Scanner(System.in);
-            System.out.println(" 삭제할 사원번호를 입력 : ");
+            System.out.print("삭제할 사원번호를 입력 : ");
             int empId = sc.nextInt();
 
             pstmt = con.prepareStatement(query);
